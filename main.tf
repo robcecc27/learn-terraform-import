@@ -1,4 +1,5 @@
 # Configure docker provider
+# terraform import docker_container.web $(docker inspect --format="{{.ID}}" hashicorp-learn)
 #
 # https://www.terraform.io/docs/providers/docker/index.html
 terraform {
@@ -11,6 +12,7 @@ terraform {
   required_version = ">= 0.14"
 }
 
+# Host path needed for wsl2
 provider "docker" {
-  host    = "npipe:////.//pipe//docker_engine"
+  host = "unix:///var/run/docker.sock"
 }
